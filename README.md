@@ -1,2 +1,3 @@
 # taxeus-payment-msg-persister
-Google Cloud Function to persist messages into Firestore
+
+Google Cloud Function to persist messages into Firestore.
