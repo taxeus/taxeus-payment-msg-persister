@@ -26,9 +26,9 @@ exports.storeMessage = async pubsubMessage => {
   const db = new Firestore({ projectId: process.env.PROJECT_ID });
   const collection = db.collection(process.env.FIRESTORE_COLLECTION_PATH);
 
-  const message = Buffer.from(pubsubMessage.data, 'base64').toString();
-  const messageRef = collection.doc(`${message.resource.id}-${message.event}`);
+  const paymentInfo = Buffer.from(pubsubMessage.data, 'base64').toJSON();
+  const paymentInfoRef = collection.doc(`${paymentInfo.resource.id}-${paymentInfo.event}`);
 
-  await messageRef.set(message);
-  console.log(`Message ${message.resource.id}-${message.event} stored.`);
+  await paymentInfoRef.set(paymentInfo);
+  console.log(`Payment "${paymentInfo.resource.id}-${paymentInfo.event}" info stored.`);
 };
