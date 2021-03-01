@@ -22,7 +22,7 @@ const { Firestore } = require('@google-cloud/firestore');
  *
  * @param {object} pubsubMessage The Cloud Pub/Sub Message object.
  */
-exports.storeMessage = pubsubMessage => {
+exports.storeMessage = async pubsubMessage => {
   const db = new Firestore({ projectId: process.env.PROJECT_ID });
   const collection = db.collection(process.env.FIRESTORE_COLLECTION_PATH);
 
