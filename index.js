@@ -23,8 +23,8 @@ const { Firestore } = require('@google-cloud/firestore');
  * @param {object} pubsubMessage The Cloud Pub/Sub Message object.
  */
 exports.storeMessage = async pubsubMessage => {
-  const db = new Firestore({ projectId: process.env.PROJECT_ID });
-  const collection = db.collection(process.env.FIRESTORE_COLLECTION_PATH);
+  const firestoreClient = new Firestore();
+  const collection = firestoreClient.collection(process.env.FIRESTORE_COLLECTION_PATH);
 
   const paymentInfo = Buffer.from(pubsubMessage.data, 'base64').toJSON();
   const paymentInfoRef = collection.doc(`${paymentInfo.resource.id}-${paymentInfo.event}`);
